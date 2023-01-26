@@ -59,7 +59,6 @@ function EnvironmentSetting() {
   StartGameCounter = 2;
   CounterDisplay.innerHTML = "00:00";
   CounterDisplay.style.paddingTop = "50px";
-  // CounterDisplay.style.fontSize = "1em";
   StartBtn.innerText = `START`;
   Score.innerHTML = GameScore;
   TileDisplay.innerText = "";
@@ -68,10 +67,7 @@ function EnvironmentSetting() {
 
 function StartGame() {
   EnvironmentSetting();
-  // console.log(`first try from startgame ${isFirstTry}`);
-  // if (isFirstTry) {
-  // isFirstTry = false;
-  // console.log(`inside if from startgame ${isFirstTry}`);
+
   if (!isON) {
     let StartGameTimer = setInterval(countdown, 970);
     function countdown() {
@@ -85,7 +81,6 @@ function StartGame() {
         StartGameCounter--;
       }
     }
-    // }
   }
 }
 
@@ -94,7 +89,6 @@ function GameTime() {
   StartBtn.innerText = "Game ON";
   PawnImage.classList.add("animated");
   wantedTile = TileGenerator();
-  console.log(`wanted from gametime func ${wantedTile}`);
   GameTimerId = setInterval(countdown, 970);
 
   function countdown() {
@@ -119,11 +113,9 @@ function TileGenerator() {
 
 function playing(event) {
   if (isON) {
-    // ChessBoard.removeEventListener("click", TileListening);
     TileListening(event);
   } else {
     clearTimeout(GameTimerId);
-    // console.log("Game Over from playing else");
     TileListening(event);
     TileDisplay.innerText = "";
     StartBtn.innerText = `START`;
@@ -132,14 +124,11 @@ function playing(event) {
     CounterDisplay.style.lineHeight = "0.85em";
 
     TileDisplay.innerText = "";
-    // EnvironmentSetting();
   }
 
   function TileListening(event) {
     if (isON == true) {
       clickedTile = event.target.id;
-      // console.log(`wanted from playing func ${wantedTile}`);
-      // console.log(`User Pressed ${clickedTile}`);
       if (wantedTile === clickedTile) {
         GameScore++;
         Score.innerHTML = GameScore;
