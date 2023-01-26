@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chess Vision</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="./main.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Chess Vision Game</h1>
+        </header>
+        <section>
+            <div id="ChessBoard"></div>
+        </section>
+        <section class="ControlArea">
+            <div id="StartBtn" onclick="StartGame()"></div>
+            <div id="TileDisplay"></div>
+        </section>
+        <section class="ScoreArea">
+            <div id="CounterDisplay"></div>
+            <div id="Score"></div>
+        </section>
+        <section class="ScoreFigureArea">
+            <img id="PawnImage" src="./media/chess1.png" alt="Chess Pawn">
+            <div id="ScoreFigure"></div>
+        </section>
+    </body>
+</html>
