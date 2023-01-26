@@ -38,10 +38,8 @@ function drawBoard() {
         square.style.backgroundColor = "white";
         square.style.opacity = "1";
       }
-      const labelLetter = `<span style= "text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${
-        Letters[7 - (i + j)]
-      }</span>`;
-      const labelNumber = `<span style= "text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
+      const labelLetter = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${Letters[7 - (i + j)]}</span>`;
+      const labelNumber = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
       if (j === 0) {
         row.insertAdjacentHTML("afterbegin", labelLetter);
       }
