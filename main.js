@@ -9,9 +9,9 @@ const ScoreFigure = document.getElementById("ScoreFigure");
 const CounterDisplay = document.getElementById("CounterDisplay");
 const GameOver = `<span style="top: -0.45em; position: relative;">Game Over</span>`;
 const TickMark = `<span id="TickMark" style="  color: transparent;
-text-shadow: -1px 1px 2px green, 1px 1px 2px green, 1px -1px 0 green, -1px -1px 0 white; font-size: 1em;">✔</span>`;
+text-shadow: -1px 1px 2px green, 1px 1px 2px green, 1px -1px 0 green, -1px -1px 0 white; font-size: 0.85em;">✔</span>`;
 const XMark = `<span id="XMark" style="  color: transparent;
-text-shadow: -1px 1px 2px red, 1px 1px 2px red, 1px -1px 0 red, -1px -1px 0 white;font-size: 1em;">✘</span>`;
+text-shadow: -1px 1px 2px red, 1px 1px 2px red, 1px -1px 0 red, -1px -1px 0 white;font-size: 0.85em;">✘</span>`;
 let isON;
 let GameScore;
 let wantedTile;
@@ -54,6 +54,8 @@ function drawBoard() {
   }
 }
 
+StartBtn.addEventListener("click", StartGame);
+
 function EnvironmentSetting() {
   isON = false;
   GameScore = 0;
@@ -69,7 +71,7 @@ function EnvironmentSetting() {
 
 function StartGame() {
   EnvironmentSetting();
-
+  StartBtn.removeEventListener("click", StartGame);
   if (!isON) {
     let StartGameTimer = setInterval(countdown, 970);
     function countdown() {
@@ -127,7 +129,7 @@ function playing(event) {
     CounterDisplay.innerHTML = GameOver;
     CounterDisplay.style.fontSize = "1em";
     CounterDisplay.style.lineHeight = "0.85em";
-
+    StartBtn.addEventListener("click", StartGame);
     TileDisplay.innerText = "";
   }
 
@@ -138,15 +140,31 @@ function playing(event) {
         GameScore++;
         Score.innerHTML = GameScore;
         ScoreFigure.innerHTML += TickMark;
+        DrawOnTile(clickedTile, "tick");
         wantedTile = TileGenerator();
-        console.log(`wanted from true ${wantedTile}`);
+        // console.log(`wanted from true ${wantedTile}`);
       } else {
         ScoreFigure.innerHTML += XMark;
+        DrawOnTile(clickedTile, "x");
         wantedTile = TileGenerator();
-        console.log(`wanted from false ${wantedTile}`);
+        // console.log(`wanted from false ${wantedTile}`);
       }
     }
   }
+}
+
+function DrawOnTile(Clicked, TickOrX) {
+  let Tile = document.getElementById(Clicked);
+  Tile.classList.toggle("TileFigure");
+  if (TickOrX === "tick") {
+    Tile.innerHTML = TickMark;
+  } else if (TickOrX === "x") {
+    Tile.innerHTML = XMark;
+  }
+  setTimeout(() => {
+    Tile.innerHTML = "";
+    Tile.classList.toggle("TileFigure");
+  }, 1000);
 }
 
 drawBoard();
