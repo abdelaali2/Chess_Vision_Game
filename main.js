@@ -38,7 +38,9 @@ function drawBoard() {
         square.style.backgroundColor = "white";
         square.style.opacity = "1";
       }
-      const labelLetter = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${Letters[7 - (i + j)]}</span>`;
+      const labelLetter = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${
+        Letters[7 - (i + j)]
+      }</span>`;
       const labelNumber = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
       if (j === 0) {
         row.insertAdjacentHTML("afterbegin", labelLetter);
@@ -77,7 +79,9 @@ function StartGame() {
         GameTime();
       } else {
         StartBtn.style.fontSize = "4em";
-        StartBtn.innerHTML = `<span style="top:-0.25em; font-size: 1.15em ; position: relative;">${StartGameCounter + 1}</span>`;
+        StartBtn.innerHTML = `<span style="top:-0.25em; font-size: 1.15em ; position: relative;">${
+          StartGameCounter + 1
+        }</span>`;
         StartGameCounter--;
       }
     }
@@ -97,7 +101,7 @@ function GameTime() {
       PawnImage.classList.remove("animated");
       playing();
     } else {
-      CounterDisplay.innerHTML = `00:${GameTimeLeft+1}`;
+      CounterDisplay.innerHTML = `00:${GameTimeLeft + 1}`;
       GameTimeLeft--;
     }
   }
@@ -115,6 +119,7 @@ function playing(event) {
   if (isON) {
     TileListening(event);
   } else {
+    isON = false;
     clearTimeout(GameTimerId);
     TileListening(event);
     TileDisplay.innerText = "";
