@@ -26,7 +26,7 @@ function drawBoard() {
     const row = document.createElement("div");
     row.style.display = "flex";
     for (let j = 0; j < 8; j++) {
-      let newID = `${Letters[7 - i]}${Numbers[j]}`;
+      let newID = `${Letters[j]}${Numbers[7 - i]}`;
       const square = document.createElement("div");
       square.addEventListener("click", (e) => {
         playing(e);
@@ -38,15 +38,13 @@ function drawBoard() {
         square.style.backgroundColor = "white";
         square.style.opacity = "1";
       }
-      const labelLetter = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${
-        Letters[7 - (i + j)]
-      }</span>`;
-      const labelNumber = `<span style= "pointer-events: none; text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
+      const labelLetter = `<span class="labelLetter">${Letters[j]}</span>`;
+      const labelNumber = `<span class="labelNumber">${Numbers[7-i]}</span>`;
       if (j === 0) {
-        row.insertAdjacentHTML("afterbegin", labelLetter);
+        row.insertAdjacentHTML("afterbegin", labelNumber);
       }
       if (i === 7) {
-        square.insertAdjacentHTML("afterbegin", labelNumber);
+        square.insertAdjacentHTML("afterbegin", labelLetter);
       }
       row.appendChild(square);
       ChessBoard.appendChild(row);
@@ -140,14 +138,12 @@ function playing(event) {
         GameScore++;
         Score.innerHTML = GameScore;
         ScoreFigure.innerHTML += TickMark;
-        DrawOnTile(clickedTile, "tick");
+        // DrawOnTile(clickedTile, "tick");
         wantedTile = TileGenerator();
-        // console.log(`wanted from true ${wantedTile}`);
       } else {
         ScoreFigure.innerHTML += XMark;
-        DrawOnTile(clickedTile, "x");
+        // DrawOnTile(clickedTile, "x");
         wantedTile = TileGenerator();
-        // console.log(`wanted from false ${wantedTile}`);
       }
     }
   }
@@ -164,7 +160,7 @@ function DrawOnTile(Clicked, TickOrX) {
   setTimeout(() => {
     Tile.innerHTML = "";
     Tile.classList.toggle("TileFigure");
-  }, 1000);
+  }, 500);
 }
 
 drawBoard();
